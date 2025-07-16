@@ -3,7 +3,7 @@ let currentInput = "";
 let firstNumber = null;
 let operator = null;
 
-const appendNumer = (number) => {
+const appendNumber = (number) => {
   try {
     if (!/^[0-9]$/.test(number)) {
       throw new Error("유효한 숫자를 입력하세요");
@@ -23,7 +23,7 @@ const setOperator = (op) => {
       throw new Error("유효한 연산자를 선택하세요.");
     }
 
-    if (!currnetInput) {
+    if (!currentInput) {
       throw new Error("숫자를 먼저 입력하세요.");
     }
 
@@ -42,13 +42,13 @@ const setOperator = (op) => {
 };
 
 //초기화버튼 클릭 시
-clearDisplay = () => {
+const clearDisplay = () => {
   currentInput = "";
   firstNumber = null;
   operator = null;
   document.getElementById("display").textContent = "0";
   //기존의 결과값 히든
-  document.getElementById("result"), classList.add("d-none");
+  document.getElementById("result").classList.add("d-none");
 };
 
 //계산 실행
@@ -58,7 +58,7 @@ const calculate = () => {
     if (firstNumber === null || operator === null || !currentInput)
       throw new Error("계산에 필요한 값이 부족합니다.");
 
-    const seconeNumber = Number(currentInput);
+    const secondNumber = Number(currentInput);
     if (isNaN(secondNumber)) throw new Error("유효한 숫자를 입력하세요.");
     if (operator === "/" && secondNumber === 0)
       throw new Error("0으로 나눌 수 없습니다.");
@@ -66,7 +66,7 @@ const calculate = () => {
     let result;
     switch (operator) {
       case "+":
-        result = firstNumber + seconeNumber;
+        result = firstNumber + secondNumber;
         break;
     }
 
