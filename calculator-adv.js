@@ -3,7 +3,7 @@ let currentInput = "";
 let firstNumber = null;
 let operator = null;
 
-const appendNumer = (number) => {
+const appendNumber = (number) => {
   try {
     if (!/^[0-9]$/.test(number)) {
       throw new Error("유효한 숫자를 입력하세요");
@@ -27,11 +27,11 @@ const setOperator = (op) => {
       throw new Error("숫자를 먼저 입력하세요.");
     }
 
+    firstNumber = Number(currentInput);
+
     if (isNaN(firstNumber)) {
       throw new Error("유효한 숫자를 입력하세요.");
     }
-
-    firstNumber = Number(currentInput);
 
     operator = op; // Null로 비워둔 operator에, 입력한 연산자를 넣겠다.
     currentInput = ""; //초기화
@@ -42,7 +42,7 @@ const setOperator = (op) => {
 };
 
 //초기화버튼 클릭 시
-clearDisplay = () => {
+const clearDisplay = () => {
   currentInput = "";
   firstNumber = null;
   operator = null;
@@ -97,6 +97,7 @@ const calculate = () => {
   } catch (error) {
     showError(error.message);
   }
+  updateHistory();
 };
 
 // HTML에서 <div id="history"></div> 추가 수
@@ -112,5 +113,3 @@ const updateHistory = () => {
     historyEl.appendChild(div);
   });
 };
-
-updateHistory();
